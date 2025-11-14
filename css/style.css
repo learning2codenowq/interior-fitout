@@ -27,7 +27,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', 'Space Grotesk', serif;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
     font-weight: 700;
     line-height: 1;
     margin-bottom: 1.5rem;
