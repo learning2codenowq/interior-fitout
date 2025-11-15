@@ -23,6 +23,74 @@ body {
     color: var(--text-dark);
     overflow-x: hidden;
     background-color: var(--background-white);
+    cursor: none;
+}
+
+/* Custom Luxury Cursor */
+.custom-cursor {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+    border: 2px solid #4f6d89;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    opacity: 1;
+}
+
+.custom-cursor.hover {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
+    background-color: rgba(79, 109, 137, 0.15);
+    border-color: #4f6d89;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+    background-color: #4f6d89;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    opacity: 1;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) {
+    body {
+        cursor: auto !important;
+    }
+    .custom-cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+}
+
+/* Cursor styles for interactive elements */
+* {
+    cursor: none !important;
+}
+
+a, button, .btn, input, textarea, select, 
+.card, .gallery-item, .whatsapp-float,
+.nav-menu a, .logo, .hamburger,
+.btn-outline, .btn-primary {
+    cursor: none !important;
+}
+
+/* Ensure all clickable elements hide default cursor */
+a:hover, button:hover, .btn:hover,
+input:hover, textarea:hover, select:hover {
+    cursor: none !important;
 }
 
 /* Typography */

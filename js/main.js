@@ -223,3 +223,78 @@ window.addEventListener('scroll', () => {
     
     lastScroll = currentScroll;
 });
+// Custom Luxury Cursor
+document.addEventListener('DOMContentLoaded', function() {
+    // Only enable on desktop (not touch devices)
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        return;
+    }
+
+    // Create cursor elements
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    const follower = document.createElement('div');
+    follower.className = 'cursor-follower';
+    document.body.appendChild(follower);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let followerX = 0;
+    let followerY = 0;
+
+    // Update mouse position
+    document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Animate cursor with smooth follow
+    function animate() {
+        // Main cursor - follows mouse directly
+        cursorX += (mouseX - cursorX) * 0.3;
+        cursorY += (mouseY - cursorY) * 0.3;
+
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+
+        // Follower - follows with delay
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Add hover effect for interactive elements
+    setTimeout(function() {
+        const hoverElements = document.querySelectorAll('a, button, .btn, input, textarea, select, .card, .gallery-item');
+        
+        hoverElements.forEach(function(element) {
+            element.addEventListener('mouseenter', function() {
+                cursor.classList.add('hover');
+            });
+
+            element.addEventListener('mouseleave', function() {
+                cursor.classList.remove('hover');
+            });
+        });
+    }, 100);
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', function() {
+        cursor.style.opacity = '0';
+        follower.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', function() {
+        cursor.style.opacity = '1';
+        follower.style.opacity = '1';
+    });
+});
